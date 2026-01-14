@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "member-display-tool": {
+      "command": "python",
+      "args": ["mcp_server.py"],
+      "cwd": "C:\\Users\\Admin\\Desktop\\project01\\MY_AWESOME_PROJECT"
+    }
+  }
+}

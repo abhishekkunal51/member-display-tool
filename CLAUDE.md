@@ -4,87 +4,47 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A Python project for reading and displaying member data from CSV files. The project processes member records and outputs formatted name lists with comprehensive error handling.
-
-## Project Structure
-
-```
-MY_AWESOME_PROJECT/
-├── display_names.py    # Main script with error handling (production-ready)
-├── display_members.py  # Simple script (basic version)
-├── members.csv         # Sample data file (1000 member records)
-├── venv/               # Python virtual environment
-└── CLAUDE.md           # This file
-```
+A Python project for reading and displaying member data from CSV files. Includes an MCP server for AI integration.
 
 ## Running Scripts
 
 ```bash
-# Display all member names from default file (members.csv)
+# Display member names
 python display_names.py
 
-# Display names from a specific CSV file
+# Display names from specific file
 python display_names.py path/to/file.csv
+
+# Run MCP server
+python mcp_server.py
 ```
 
-## Environment Setup
+## MCP Server
 
-```bash
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
+The `mcp_server.py` provides these tools for Claude integration:
 
-# Unix/macOS:
-source venv/bin/activate
-```
+| Tool | Description |
+|------|-------------|
+| `list_members` | List members with pagination (limit, offset) |
+| `search_members` | Search by name or email |
+| `get_member_by_id` | Get member details by ID |
+| `get_member_count` | Get total member count |
+| `get_members_by_gender` | Filter by gender |
+| `get_gender_statistics` | Gender distribution stats |
 
 ## Data Format
 
-The CSV files must contain the following required columns:
-- `first_name` - Member's first name
-- `last_name` - Member's last name
+Required CSV columns: `first_name`, `last_name`
 
-Optional columns (present in members.csv):
-- `id` - Unique identifier
-- `email` - Email address
-- `gender` - Gender field
-- `ip_address` - IP address
-
-Example CSV format:
-```csv
-id,first_name,last_name,email,gender,ip_address
-1,John,Doe,john@example.com,Male,192.168.1.1
-```
-
-## Error Handling
-
-The `display_names.py` script handles the following error conditions:
-- File not found
-- Empty file
-- Missing required columns (`first_name`, `last_name`)
-- CSV parsing errors
-- File encoding issues (expects UTF-8)
-- Permission denied errors
-- Empty name values (warns but continues)
-
-## Exit Codes
-
-- `0` - Success
-- `1` - Error occurred
-
-## Key Functions
-
-### `display_names(filename)`
-Main function that reads a CSV file and prints all member names.
-
-**Parameters:**
-- `filename` (str): Path to the CSV file
-
-**Returns:**
-- `True` on success
-- `False` on error
+Optional: `id`, `email`, `gender`, `ip_address`
 
 ## Dependencies
 
-- Python 3.x (standard library only)
-- Uses built-in modules: `csv`, `sys`, `os`
+- Python 3.x
+- `mcp[cli]>=1.0.0` (for MCP server)
+
+## Key Files
+
+- `display_names.py` - CLI tool with error handling
+- `mcp_server.py` - MCP server implementation
+- `members.csv` - Sample data (1000 records)
